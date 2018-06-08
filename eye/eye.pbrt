@@ -1,0 +1,109 @@
+Integrator "path" "integer maxdepth" [12]
+
+Sampler "halton" 
+        "integer pixelsamples" [ 256 ] 
+PixelFilter "box" 
+Film "image" "string filename" ["eye.exr"]
+	"integer xresolution" [300] "integer yresolution" [300]
+Scale -1 1 1
+LookAt 0 5.10879993 5
+        0 -2.10879993 5
+        0 0 1
+Camera "perspective" "float fov" [22]
+
+#############################################
+WorldBegin
+
+#AttributeBegin
+#Rotate 90 0 0 1
+#Rotate -90 1 0 0
+#LightSource "infinite" "string mapname"
+#    "textures/20060807_wells6_hd.exr"   "color scale" [2.5 2.5 2.5]
+#AttributeEnd
+
+AttributeBegin
+    AreaLightSource "diffuse" 
+            "rgb L" [ 41.559399 43.312698 45.066002 ] 
+    Translate 34.9199982 55.9199982 -15.3509998
+    Shape "sphere" 
+            "float radius" [ 7.5 ] 
+AttributeEnd
+
+AttributeBegin
+    AreaLightSource "diffuse" 
+            "rgb L" [ 65.066002 63.312698 61.559399 ] 
+    Translate -32.8919983 55.9199982 36.2929993
+    Shape "sphere" 
+            "float radius" [ 7.5 ] 
+AttributeEnd
+
+Texture "sclera" "color" "imagemap" 
+        "string filename" [ "Textures/Sclera color.png" ] 
+Texture "uneven_bump_raw" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/Iris bump.png" ] 
+Texture "uneven_bump_scale" "float" "constant" 
+        "float value" [ 0.00019999999 ] 
+Texture "uneven_bump" "float" "scale" 
+        "texture tex1" [ "uneven_bump_raw" ] 
+        "texture tex2" [ "uneven_bump_scale" ] 
+
+Texture "iris" "color" "imagemap"
+		"string filename" [ "Textures/Iris color.png" ]
+
+AttributeBegin
+    Material "plastic" 
+            "float roughness" [ 0.00030000001 ] 
+            "texture Kd" [ "iris" ] 
+            "texture bumpmap" [ "uneven_bump" ] 
+            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+    Translate 0 2.2 5
+    Scale 0.5 0.5 0.5
+
+    AttributeBegin
+        Shape "plymesh" "string filename" "iris.ply" 
+    AttributeEnd
+AttributeEnd
+
+AttributeBegin
+    Material "glass"
+    		"float index" [ 1.376 ]
+    Translate 0 2.2 5
+    Scale 0.5 0.5 0.5
+
+    AttributeBegin
+        Shape "plymesh" 
+        	"string filename" "cornea.ply"
+        	"bool noshadowcast" "true"
+    AttributeEnd
+AttributeEnd
+
+AttributeBegin
+    Material "glass" 
+    		"float index" [ 1.33 ]
+    Translate 0 1.5 5
+    Rotate 180 1 0 0 
+    Scale 0.5 0.5 0.5
+
+    AttributeBegin
+        Shape "plymesh"
+        	"string filename" "outer.ply" 
+        	"bool noshadowcast" "true"
+    AttributeEnd
+AttributeEnd
+
+AttributeBegin
+    Material "plastic" 
+            "float roughness" [ 0.00030000001 ] 
+            "texture Kd" [ "sclera" ] 
+            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+    Translate 0 1.5 5
+    Rotate 180 1 0 0
+    Scale 0.5 0.5 0.5
+
+    AttributeBegin
+        Shape "plymesh" "string filename" "sclera.ply" 
+    AttributeEnd
+AttributeEnd
+WorldEnd

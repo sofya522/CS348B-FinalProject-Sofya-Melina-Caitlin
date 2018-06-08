@@ -81,6 +81,7 @@
 #include "materials/subsurface.h"
 #include "materials/translucent.h"
 #include "materials/uber.h"
+#include "materials/iris.h"
 #include "samplers/halton.h"
 #include "samplers/maxmin.h"
 #include "samplers/random.h"
@@ -557,6 +558,8 @@ std::shared_ptr<Material> MakeMaterial(const std::string &name,
         material = CreateHairMaterial(mp);
     else if (name == "disney")
         material = CreateDisneyMaterial(mp);
+    else if (name == "iris")
+        material = CreateIrisMaterial(mp);
     else if (name == "mix") {
         std::string m1 = mp.FindString("namedmaterial1", "");
         std::string m2 = mp.FindString("namedmaterial2", "");
