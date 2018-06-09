@@ -6,7 +6,7 @@ Integrator "path" "integer maxdepth" [12]
 Sampler "halton" 
         "integer pixelsamples" [256] 
 PixelFilter "box" 
-Film "image" "string filename" ["eyez.exr"]
+Film "image" "string filename" ["mediumcaustic.exr"]
 	"integer xresolution" [300] "integer yresolution" [300]
 Scale -1 1 1
 #LookAt 0 5.10879993 5
@@ -71,7 +71,7 @@ Texture "iris" "color" "imagemap"
 AttributeBegin
     Material "iris" 
             "float roughness" [ 0.00030000001 ]
-            "float caustic" [ 500 ]  
+            "float caustic" [ 30 ]  
             "texture Kd" [ "iris" ] 
             "texture bumpmap" [ "uneven_bump" ] 
             "rgb Ks" [ 0.0039999999 0.0039999999 0.0039999999 ] 

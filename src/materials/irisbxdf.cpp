@@ -80,39 +80,18 @@ Spectrum IrisBXDFReflection::Sample_f(const Vector3f &wo, Vector3f *wi,
 
 Spectrum IrisBXDFReflection::f(const Vector3f &wo, const Vector3f &wi) const {
     
-    // Float cosThetaO = AbsCosTheta(wo), cosThetaI = AbsCosTheta(wi);
-    // if (!SameHemisphere(wo, wi)) return Spectrum(0.f);
-    // //roughness
-    // //printf("%f\n", pow_1); 
-    // Float alphaP = 0.1f; 
-    // Vector3f wm = wi + wo; 
-    // wm = Normalize(wm); 
-    // if (wm.z < 1e-6) return Spectrum(0.);
-    // // Handle degenerate cases for microfacet reflection
-    // if (cosThetaI == 0 || cosThetaO == 0) return Spectrum(0.);
-    // if (wm.x == 0 && wm.y == 0 && wm.z == 0) return Spectrum(0.);
-    
-    
-    // Float normalization_factor = (alphaP + 2.0 ) / (2.0*M_PI); 
-    // Float cosThetaM = wm.z; 
-
-    
-  
-    // return R * F * normalization_factor * pow(cosThetaM, alphaP); 
-    //return R * distribution->D(wm) * distribution->G(wo, wi) * F /
-     //     (4 * cosThetaI * cosThetaO);
 
     const Float cosTheta0 = wo.z; 
     if(cosTheta0 <= 0.0f) return Spectrum(0.);
 
-    const Float eyeCausticBrdfCosThetaI = wi.z; 
-    if(eyeCausticBrdfCosThetaI <= 0.0f) return Spectrum(0.); 
+    const Float caustic_CosThetaI = wi.z; 
+    if(caustic_CosThetaI <= 0.0f) return Spectrum(0.); 
     //printf("%f\n", caustic_power); 
     const Float alphaP = caustic_power; 
 
     //const float normalization_factor = (alphaP + 2.0) / (2.0 * M_PI); 
-	const float normalization_factor = (alphaP + 2.0) / (2.0 * Pi);
-    const float normalizedPhong = normalization_factor * pow(eyeCausticBrdfCosThetaI, alphaP); 
+	const float norm_factor = (alphaP + 2.0) / (2.0 * Pi);
+    const float normalizedPhong = norm_factor * pow(eyeCausticBrdfCosThetaI, alphaP); 
 
     Spectrum F = 1 ; // fresnel->Evaluate(Dot(wi, Normalize(wi + wo)));
    
