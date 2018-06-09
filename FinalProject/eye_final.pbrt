@@ -29,13 +29,13 @@ Rotate -90 1 0 0
         "Textures/env.exr"   "color scale" [2.5 2.5 2.5]
 AttributeEnd
 
-AttributeBegin
-    AreaLightSource "diffuse" 
-            "rgb L" [ 65.066002 63.312698 61.559399 ] 
-    Translate -32.8919983 55.9199982 36.2929993
-    Shape "sphere" 
-            "float radius" [ 7.5 ] 
-AttributeEnd
+#AttributeBegin
+#    AreaLightSource "diffuse" 
+#            "rgb L" [ 65.066002 63.312698 61.559399 ] 
+#    Translate -32.8919983 55.9199982 36.2929993
+#    Shape "sphere" 
+#            "float radius" [ 7.5 ] 
+#AttributeEnd
 
 Texture "sclera" "color" "imagemap" 
         "string filename" [ "Textures/Sclera color.png" ] 
@@ -105,9 +105,7 @@ AttributeBegin
     AttributeBegin
 
 	    Material "glass" 
-	            #"texture Kd" [ "cornmap" ] 
-	            #"rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
-	            "float index" [ 1.376 ]
+	        "float index" [ 1.376 ]
 
         Shape "plymesh" 
         	"string filename" "geometry/cornea.ply" 
@@ -117,7 +115,8 @@ AttributeBegin
 	            "float roughness" [ 0.00030000001 ] 
 	            "texture Kd" [ "irismap" ] 
 	            "texture bumpmap" [ "iris_bump" ] 
-	            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+	            "rgb Ks" [ 0.04 0.04 0.04 ]
+	            "float caustic" [ 20 ] 
 
         Shape "plymesh" "string filename" "geometry/iris_1.ply" 
 	AttributeEnd
@@ -133,10 +132,7 @@ AttributeBegin
     Shape "plymesh" "string filename" "geometry/scelera.ply" 
 
     Material "glass"  
-            #"float roughness" [ 0.00030000001 ] 
-            #"texture Kd" [ "sclera2" ] 
             "texture bumpmap" [ "uneven_bump2" ] 
-            #"rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
             "float index" [ 1.33 ]
 
     AttributeBegin
