@@ -1,8 +1,8 @@
 Integrator "path" "integer maxdepth" [12]
 Sampler "halton" 
-        "integer pixelsamples" [ 4 ] 
+        "integer pixelsamples" [ 64 ] 
 PixelFilter "box" 
-Film "image" "string filename" ["eye9.exr"]
+Film "image" "string filename" ["eye14.exr"]
   "integer xresolution" [1080] "integer yresolution" [1080]
 Scale -1 1 1
 LookAt 0 2.10879993 12.6740004
@@ -29,13 +29,13 @@ Rotate -90 1 0 0
         "Textures/env.exr"   "color scale" [2.5 2.5 2.5]
 AttributeEnd
 
-AttributeBegin
-    AreaLightSource "diffuse" 
-            "rgb L" [ 65.066002 63.312698 61.559399 ] 
-    Translate -32.8919983 55.9199982 36.2929993
-    Shape "sphere" 
-            "float radius" [ 7.5 ] 
-AttributeEnd
+#AttributeBegin
+#    AreaLightSource "diffuse" 
+#            "rgb L" [ 65.066002 63.312698 61.559399 ] 
+#    Translate -32.8919983 55.9199982 36.2929993
+##    Shape "sphere" 
+#            "float radius" [ 7.5 ] 
+#AttributeEnd
 
 Texture "book_cover" "color" "imagemap" 
         "string filename" [ "Textures/Sclera color.png" ] 
@@ -90,62 +90,62 @@ Texture "iris_bump" "float" "scale"
 Texture "cornmap" "color" "imagemap"
         "string filename" [ "Textures/Sclera opacity.png" ] 
 
-AttributeBegin
-    Material "glass" 
+#AttributeBegin
+    #Material "glass" 
            # "float roughness" [ 0.00030000001 ] 
-            "texture Kd" [ "cornmap" ] 
+#            "texture Kd" [ "cornmap" ] 
             #"texture bumpmap" [ "uneven_bump" ] 
-            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
-    Translate -0.3 2.0 9.1
-    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    Scale 0.5 0.5 0.5
+#            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+#    Translate -0.3 2.0 9.1
+#    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+#    Scale 0.5 0.5 0.5
 
-    AttributeBegin
-        Rotate 180 1 0 0
-        Rotate 30 1 0 0 
-        Rotate 45 0 0 1
-        Shape "plymesh" "string filename" "geometry/cornea.ply" 
-    AttributeEnd
-AttributeEnd
+#    AttributeBegin
+#        Rotate 180 1 0 0
+#        Rotate 30 1 0 0 
+#        Rotate 45 0 0 1
+#        Shape "plymesh" "string filename" "geometry/cornea.ply" 
+#    AttributeEnd
+#AttributeEnd
 
-AttributeBegin
-    Material "translucent" 
-            "float roughness" [ 0.00030000001 ] 
-            "texture Kd" [ "book_cover" ] 
-            "texture bumpmap" [ "uneven_bump" ] 
-            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
-    Translate -0.3 2.0 9
-    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    Scale 0.5 0.5 0.5
+#AttributeBegin
+#    Material "translucent" 
+#            "float roughness" [ 0.00030000001 ] 
+#            "texture Kd" [ "book_cover" ] 
+#            "texture bumpmap" [ "uneven_bump" ] 
+#            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+#    Translate -0.3 2.0 9
+#    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+#    Scale 0.5 0.5 0.5
 
-    AttributeBegin
-        Rotate 180 1 0 0
-        Rotate 30 1 0 0 
-        Rotate 45 0 0 1
-        Shape "plymesh" "string filename" "geometry/scelera.ply" 
-    AttributeEnd
-AttributeEnd
+#    AttributeBegin
+#        Rotate 180 1 0 0
+#        Rotate 30 1 0 0 
+#        Rotate 45 0 0 1
+#        Shape "plymesh" "string filename" "geometry/scelera.ply" 
+#    AttributeEnd
+#AttributeEnd
 
-AttributeBegin
-    Material "glass"  
+#AttributeBegin
+    #Material "glass"  
             #"namedmaterial1" "glass"
             #"namedmaterial2" "matte"
-            "float roughness" [ 0.00030000001 ] 
-            "texture Kd" [ "book_cover2" ] 
-            "texture bumpmap" [ "uneven_bump2" ] 
-            "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
-    Translate -0.3 2.0 9
-    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    Scale 0.5 0.5 0.5
+            #"float roughness" [ 0.00030000001 ] 
+            #"texture Kd" [ "book_cover2" ] 
+            #"texture bumpmap" [ "uneven_bump2" ] 
+            #"rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+#    Translate -0.3 2.0 9
+#    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+#    Scale 0.5 0.5 0.5
 
-    AttributeBegin
-        Scale 1.1 1.1 1.1
-        Rotate 180 1 0 0
-        Rotate 30 1 0 0 
-        Rotate 45 0 0 1
-        Shape "plymesh" "string filename" "geometry/scelera.ply" 
-    AttributeEnd
-AttributeEnd
+#    AttributeBegin
+#        Scale 1.1 1.1 1.1
+#        Rotate 180 1 0 0
+#        Rotate 30 1 0 0 
+#        Rotate 45 0 0 1
+#        Shape "plymesh" "string filename" "geometry/scelera.ply" 
+#    AttributeEnd
+#AttributeEnd
 
 
 
@@ -154,6 +154,7 @@ AttributeBegin
             "float roughness" [ 0.00030000001 ] 
             "texture Kd" [ "irismap" ] 
             "texture bumpmap" [ "iris_bump" ] 
+            "float caustic" [0] 
             "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
     Translate -0.3 2.0 9.1
     Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
