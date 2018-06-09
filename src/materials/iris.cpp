@@ -56,26 +56,30 @@ void IrisMaterial::ComputeScatteringFunctions(
     Spectrum r = reflect->Evaluate(*si).Clamp();
     Spectrum t = transmit->Evaluate(*si).Clamp();
     if (r.IsBlack() && t.IsBlack()) return;
-
-    Spectrum kd = Kd->Evaluate(*si).Clamp();
-    if (!kd.IsBlack()) {
-        if (!r.IsBlack())
-            si->bsdf->Add(ARENA_ALLOC(arena, LambertianReflection)(r * kd));
-        if (!t.IsBlack())
-            si->bsdf->Add(ARENA_ALLOC(arena, LambertianTransmission)(t * kd));
-    }
-    Spectrum ks = Ks->Evaluate(*si).Clamp();
-    if (!ks.IsBlack() && (!r.IsBlack() || !t.IsBlack())) {
-        Float rough = roughness->Evaluate(*si);
+     Spectrum ks = Ks->Evaluate(*si).Clamp();
+     Fresnel *fresnel = ARENA_ALLOC(arena, FresnelDielectric)(1.f, eta);
+     Float rough = roughness->Evaluate(*si);
         if (remapRoughness)
             rough = TrowbridgeReitzDistribution::RoughnessToAlpha(rough);
         MicrofacetDistribution *distrib =
             ARENA_ALLOC(arena, TrowbridgeReitzDistribution)(rough, rough);
-        if (!r.IsBlack()) {
-            //sprintf("%f\n", caustic); 
-            Fresnel *fresnel = ARENA_ALLOC(arena, FresnelDielectric)(1.f, eta);
+
+    Spectrum kd = Kd->Evaluate(*si).Clamp();
+    if (!kd.IsBlack()) {
+        if (!r.IsBlack())
+            
             si->bsdf->Add(ARENA_ALLOC(arena, IrisBXDFReflection)(
                 r * ks, distrib, fresnel, caustic));
+            si->bsdf->Add(ARENA_ALLOC(arena, LambertianReflection)(r * kd));
+        if (!t.IsBlack())
+            si->bsdf->Add(ARENA_ALLOC(arena, LambertianTransmission)(t * kd));
+    }
+    
+    if (!ks.IsBlack() && (!r.IsBlack() || !t.IsBlack())) {
+       
+        if (!r.IsBlack()) {
+            //printf("%f\n", caustic); 
+            
 
             //printf("%f\n", power); 
         }
