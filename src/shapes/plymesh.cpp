@@ -155,10 +155,14 @@ int rply_face_callback(p_ply_argument argument) {
 }
 
 std::vector<std::shared_ptr<Shape>> CreatePLYMesh(
-    const Transform *o2w, const Transform *w2o, bool reverseOrientation,
-    const ParamSet &params,
+	const Transform *o2w, const Transform *w2o, bool reverseOrientation,
+	const ParamSet &params,
     std::map<std::string, std::shared_ptr<Texture<Float>>> *floatTextures) {
     const std::string filename = params.FindOneFilename("filename", "");
+	bool noShadowCast = params.FindOneBool("noshadowcast", false);
+	if (noShadowCast == NULL) {
+		noShadowCast = false;
+	}
     p_ply ply = ply_open(filename.c_str(), rply_message_callback, 0, nullptr);
     if (!ply) {
         Error("Couldn't open PLY file \"%s\"", filename.c_str());
@@ -286,7 +290,7 @@ std::vector<std::shared_ptr<Shape>> CreatePLYMesh(
                               context.indexCtr / 3, context.indices,
                               vertexCount, context.p, nullptr, context.n,
                               context.uv, alphaTex, shadowAlphaTex,
-                              context.faceIndices);
+                              context.faceIndices, noShadowCast);
 }
 
 }  // namespace pbrt

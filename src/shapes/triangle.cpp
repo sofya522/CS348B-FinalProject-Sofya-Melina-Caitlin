@@ -56,12 +56,12 @@ TriangleMesh::TriangleMesh(
     int nVertices, const Point3f *P, const Vector3f *S, const Normal3f *N,
     const Point2f *UV, const std::shared_ptr<Texture<Float>> &alphaMask,
     const std::shared_ptr<Texture<Float>> &shadowAlphaMask,
-    const int *fIndices)
+    const int *fIndices, const bool noShadowCast)
     : nTriangles(nTriangles),
       nVertices(nVertices),
       vertexIndices(vertexIndices, vertexIndices + 3 * nTriangles),
       alphaMask(alphaMask),
-      shadowAlphaMask(shadowAlphaMask) {
+      shadowAlphaMask(shadowAlphaMask), noShadowCast(noShadowCast) {
     ++nMeshes;
     nTris += nTriangles;
     triMeshBytes += sizeof(*this) + this->vertexIndices.size() * sizeof(int) +
@@ -97,10 +97,10 @@ std::vector<std::shared_ptr<Shape>> CreateTriangleMesh(
     int nVertices, const Point3f *p, const Vector3f *s, const Normal3f *n,
     const Point2f *uv, const std::shared_ptr<Texture<Float>> &alphaMask,
     const std::shared_ptr<Texture<Float>> &shadowAlphaMask,
-    const int *faceIndices) {
+    const int *faceIndices, const bool noShadowCast) {
     std::shared_ptr<TriangleMesh> mesh = std::make_shared<TriangleMesh>(
         *ObjectToWorld, nTriangles, vertexIndices, nVertices, p, s, n, uv,
-        alphaMask, shadowAlphaMask, faceIndices);
+        alphaMask, shadowAlphaMask, faceIndices, noShadowCast);
     std::vector<std::shared_ptr<Shape>> tris;
     tris.reserve(nTriangles);
     for (int i = 0; i < nTriangles; ++i)
@@ -425,6 +425,10 @@ bool Triangle::Intersect(const Ray &ray, Float *tHit, SurfaceInteraction *isect,
 }
 
 bool Triangle::IntersectP(const Ray &ray, bool testAlphaTexture) const {
+	if (mesh->noShadowCast) {
+		return false;
+	}
+
     ProfilePhase p(Prof::TriIntersectP);
     ++nTests;
     // Get triangle vertices in _p0_, _p1_, and _p2_
@@ -653,8 +657,14 @@ std::vector<std::shared_ptr<Shape>> CreateTriangleMeshShape(
     const int *vi = params.FindInt("indices", &nvi);
     const Point3f *P = params.FindPoint3f("P", &npi);
     const Point2f *uvs = params.FindPoint2f("uv", &nuvi);
+	bool noShadowCast = params.FindOneBool("noshadowcast", false);
     if (!uvs) uvs = params.FindPoint2f("st", &nuvi);
     std::vector<Point2f> tempUVs;
+	std::cout << "No Shadow Cast: " << noShadowCast << std::endl;
+	if (noShadowCast == NULL) {
+		//Error("Didn't find shadowcast.");
+		noShadowCast = false;
+	}
     if (!uvs) {
         const Float *fuv = params.FindFloat("uv", &nuvi);
         if (!fuv) fuv = params.FindFloat("st", &nuvi);
@@ -740,7 +750,7 @@ std::vector<std::shared_ptr<Shape>> CreateTriangleMeshShape(
         shadowAlphaTex.reset(new ConstantTexture<Float>(0.f));
 
     return CreateTriangleMesh(o2w, w2o, reverseOrientation, nvi / 3, vi, npi, P,
-                              S, N, uvs, alphaTex, shadowAlphaTex, faceIndices);
+                              S, N, uvs, alphaTex, shadowAlphaTex, faceIndices, noShadowCast);
 }
 
 }  // namespace pbrt

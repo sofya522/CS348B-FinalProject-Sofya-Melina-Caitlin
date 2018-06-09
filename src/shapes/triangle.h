@@ -55,7 +55,7 @@ struct TriangleMesh {
                  const Vector3f *S, const Normal3f *N, const Point2f *uv,
                  const std::shared_ptr<Texture<Float>> &alphaMask,
                  const std::shared_ptr<Texture<Float>> &shadowAlphaMask,
-                 const int *faceIndices);
+                 const int *faceIndices, const bool noShadowCast);
 
     // TriangleMesh Data
     const int nTriangles, nVertices;
@@ -66,6 +66,7 @@ struct TriangleMesh {
     std::unique_ptr<Point2f[]> uv;
     std::shared_ptr<Texture<Float>> alphaMask, shadowAlphaMask;
     std::vector<int> faceIndices;
+	const bool noShadowCast = false;
 };
 
 class Triangle : public Shape {
@@ -119,7 +120,7 @@ std::vector<std::shared_ptr<Shape>> CreateTriangleMesh(
     const Vector3f *s, const Normal3f *n, const Point2f *uv,
     const std::shared_ptr<Texture<Float>> &alphaTexture,
     const std::shared_ptr<Texture<Float>> &shadowAlphaTexture,
-    const int *faceIndices = nullptr);
+    const int *faceIndices = nullptr, const bool noShadowCast = false);
 std::vector<std::shared_ptr<Shape>> CreateTriangleMeshShape(
     const Transform *o2w, const Transform *w2o, bool reverseOrientation,
     const ParamSet &params,

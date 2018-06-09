@@ -61,7 +61,7 @@ Float IrisBXDFReflection::Pdf(const Vector3f &wo, const Vector3f &wi) const {
 
     if (!SameHemisphere(wo, wi)) return 0;
     Vector3f wh = Normalize(wo + wi);
-    return 1 / (2 * M_PI); 
+    return 1 / (2 * Pi); 
     //return distribution->Pdf(wo, wh) / (4 * Dot(wo, wh));
 }
 
@@ -89,8 +89,9 @@ Spectrum IrisBXDFReflection::f(const Vector3f &wo, const Vector3f &wi) const {
     //printf("%f\n", caustic_power); 
     const Float alphaP = caustic_power; 
 
-    const float norm_factor = (alphaP + 2.0) / (2.0 * M_PI); 
-    const float normalizedPhong = norm_factor * pow(caustic_CosThetaI, alphaP); 
+    //const float normalization_factor = (alphaP + 2.0) / (2.0 * M_PI); 
+	const float norm_factor = (alphaP + 2.0) / (2.0 * Pi);
+    const float normalizedPhong = norm_factor * pow(eyeCausticBrdfCosThetaI, alphaP); 
 
     Spectrum F = 1 ; // fresnel->Evaluate(Dot(wi, Normalize(wi + wo)));
    
