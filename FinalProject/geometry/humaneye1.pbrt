@@ -1,0 +1,61 @@
+#assumes all other textures besides iris are provided
+#use this to creat different eyes then just import in where needed
+
+Texture "irismap" "color" "imagemap"
+        "string filename" [ "Textures/Iris color.png" ] 
+
+Texture "iris_bump_raw" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/Iris bump.png" ] 
+
+Texture "iris_bump_scale" "float" "constant"
+    "float value" [ 0.00019999999 ] 
+
+Texture "iris_bump" "float" "scale" 
+        "texture tex1" [ "iris_bump_raw" ] 
+        "texture tex2" [ "iris_bump_scale" ] 
+
+# This is the eye object. Needs the above textures
+AttributeBegin
+    AttributeBegin
+
+	    Material "glass" 
+	        "float index" [ 1.376 ]
+
+        Shape "plymesh" 
+        	"string filename" "geometry/cornea.ply" 
+        	"bool noshadowcast" "true"
+
+	    Material "iris" 
+	            "float roughness" [ 0.00030000001 ] 
+	            "texture Kd" [ "irismap" ] 
+	            "texture bumpmap" [ "iris_bump" ] 
+	            "rgb Ks" [ 0.04 0.04 0.04 ]
+	            "float caustic" [ 20 ] 
+
+        Shape "plymesh" "string filename" "geometry/iris_1.ply" 
+	AttributeEnd
+
+
+    Material "translucent" 
+        "float roughness" [ 0.00030000001 ] 
+        "texture Kd" [ "sclera" ] 
+        "texture bumpmap" [ "uneven_bump" ] 
+        "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+
+
+    Shape "plymesh" "string filename" "geometry/scelera.ply" 
+
+    Material "glass"  
+            "texture bumpmap" [ "uneven_bump2" ] 
+            "float index" [ 1.33 ]
+
+    AttributeBegin
+    	#scale it up so just bigger than sclera
+        Scale 1.0001 1.0001 1.0001
+        Shape "plymesh" 
+        	"string filename" "geometry/scelera.ply" 
+        	"bool noshadowcast" "true"
+    AttributeEnd
+AttributeEnd
