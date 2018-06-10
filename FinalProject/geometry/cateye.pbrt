@@ -1,0 +1,49 @@
+#assumes all other textures besides iris are provided
+#use this to creat different eyes then just import in where needed
+
+Texture "irismap" "color" "imagemap"
+        "string filename" [ "Textures/iris cat.png" ] 
+
+# This is the eye object. Needs the above textures
+AttributeBegin
+    AttributeBegin
+
+	    Material "glass" 
+	        "float index" [ 1.376 ]
+
+        Shape "plymesh" 
+        	"string filename" "geometry/cornea2.ply" 
+        	"bool noshadowcast" "true"
+
+	    Material "iris" 
+	            "float roughness" [ 0.00030000001 ] 
+	            "texture Kd" [ "irismap" ] 
+	            "texture bumpmap" [ "iris_bump" ] 
+	            "rgb Ks" [ 0.04 0.04 0.04 ]
+	            "float caustic" [ 20 ] 
+
+        Shape "plymesh" "string filename" "geometry/Cat iris.ply" 
+	AttributeEnd
+
+
+    Material "translucent" 
+        "float roughness" [ 0.00030000001 ] 
+        "texture Kd" [ "sclera" ] 
+        "texture bumpmap" [ "uneven_bump" ] 
+        "rgb Ks" [ 0.039999999 0.039999999 0.039999999 ] 
+
+
+    Shape "plymesh" "string filename" "geometry/sclera2.ply" 
+
+    Material "glass"  
+            "texture bumpmap" [ "uneven_bump2" ] 
+            "float index" [ 1.33 ]
+
+    AttributeBegin
+    	#scale it up so just bigger than sclera
+        Scale 1.0001 1.0001 1.0001
+        Shape "plymesh" 
+        	"string filename" "geometry/sclera2.ply" 
+        	"bool noshadowcast" "true"
+    AttributeEnd
+AttributeEnd
