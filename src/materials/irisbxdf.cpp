@@ -91,7 +91,7 @@ Spectrum IrisBXDFReflection::f(const Vector3f &wo, const Vector3f &wi) const {
 
     //const float normalization_factor = (alphaP + 2.0) / (2.0 * M_PI); 
 	const float norm_factor = (alphaP + 2.0) / (2.0 * Pi);
-    const float normalizedPhong = norm_factor * pow(caustic_CosThetaI, alphaP);
+    const float normalizedPhong = norm_factor * pow(caustic_CosThetaI, alphaP); 
 
     Spectrum F = 1 ; // fresnel->Evaluate(Dot(wi, Normalize(wi + wo)));
    
