@@ -1,0 +1,55 @@
+AttributeBegin  
+AttributeBegin  
+    #tweak these to move the eye around
+    Translate 0.26 2.1 10.25
+    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.11 0.11 0.11
+
+    Rotate 180 1 0 0 
+    Rotate 25 1 0 0 
+    Rotate 10 0 0 1
+    Rotate 30 0 0 1
+    Rotate 45 0 1 0 
+    Rotate 5 1 0 0
+    Rotate 10 0 0 1
+    Rotate 30 1 0 0 
+    Rotate 90 0 1 0 
+    
+    Include "geometry/snakeeye.pbrt"
+AttributeEnd
+
+AttributeBegin  
+    #tweak these to move the eye around
+    Translate 0.19 1.95 10.15
+    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.11 0.11 0.11
+
+    Rotate 180 1 0 0 
+    Rotate 25 1 0 0 
+    Rotate 10 0 0 1
+    Rotate 30 0 0 1
+    Rotate 45 0 1 0 
+    Rotate 5 1 0 0
+    Rotate 10 0 0 1
+    Rotate 30 1 0 0 
+    Rotate 90 0 1 0 
+    
+    Include "geometry/whiteeye.pbrt"
+AttributeEnd
+
+AttributeBegin  
+    #tweak these to move the eye around
+    Translate -0.25 1.75 10
+    Rotate 180 1 0 0 
+    Rotate -30 0 1 0 
+    Rotate -20 0 0 1 
+    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Rotate 135 0 1 0 
+
+    Scale 0.14 0.14 0.14 
+
+    
+    Include "geometry/pick_1.pbrt"
+AttributeEnd
+
+AttributeEnd

@@ -3,6 +3,10 @@
 
 Texture "irismap" "color" "imagemap"
         "string filename" [ "Textures/snakeEye.png" ] 
+Texture "snake_iris_bump" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/snakeEye bump.png" ] 
 
 # This is the eye object. Needs the above textures
 AttributeBegin

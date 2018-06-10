@@ -1,0 +1,60 @@
+AttributeBegin
+
+AttributeBegin  
+    #tweak these to move the eye around
+    Translate -0.25 2.0 9.8
+    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.11 0.11 0.11
+
+    Rotate 180 1 0 0 
+    Rotate 25 1 0 0 
+    Rotate 10 0 0 1
+    Rotate 30 0 0 1
+    Rotate 45 0 1 0 
+    Rotate 5 1 0 0
+    
+    Include "geometry/humaneye1.pbrt"
+AttributeEnd
+
+AttributeBegin  
+    #tweak these to move the eye around
+    Translate -0.16 1.85 9.8
+    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.11 0.11 0.11
+
+    Rotate 180 1 0 0 
+    Rotate 25 1 0 0 
+    Rotate 10 0 0 1
+    Rotate 30 0 0 1
+    Rotate 45 0 1 0 
+    Rotate 5 1 0 0
+    
+    Include "geometry/humaneye2.pbrt"
+AttributeEnd
+
+AttributeBegin  
+    #tweak these to move the eye around
+    Translate -0.1 1.5 9.4
+    #Rotate 180 1 0 0 
+    #Rotate -30 0 1 0 
+    #Rotate -20 0 0 1 
+   # Rotate -45 1 0 1
+    #Rotate 75 0 0 1 
+    #Rotate 30 0 0 1
+
+
+    Rotate 26.254 0 1 0 
+    Rotate -27.576 1 0 0 
+    Rotate -158.54 0 0 1
+    Rotate 45 1 0 0
+    Rotate 15 0 1 0 
+    Rotate -15 1 0 0 
+
+
+    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.14 0.14 0.14 
+
+    
+    Include "geometry/pick_1.pbrt"
+AttributeEnd
+AttributeEnd

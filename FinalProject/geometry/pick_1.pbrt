@@ -1,0 +1,17 @@
+
+AttributeBegin
+AttributeBegin
+    Material "matte" 
+    #Translate -0.06 1.8 10
+    #Rotate 180 0 0 1
+    #Rotate 90 1 0 0 
+    #Scale 0.15 0.15 0.15
+
+    AttributeBegin
+        Shape "plymesh" "string filename" "geometry/pick.ply" 
+    AttributeEnd
+AttributeEnd
+
+AttributeEnd
+
+
