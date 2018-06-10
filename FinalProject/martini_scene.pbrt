@@ -9,7 +9,7 @@ LookAt 0 2.10879993 12.6740004
         0 2.10879993 12.5740004
         0 1 0
 Camera "perspective" "float fov" [22]
-    "float focaldistance" 6.674 "float lensradius" .15 # .2 # .4
+    #"float focaldistance" 6.674 "float lensradius" .15 # .2 # .4
 
 #############################################
 WorldBegin
@@ -19,7 +19,7 @@ AttributeBegin
 Rotate 90 0 0 1
 Rotate -90 1 0 0
     LightSource "infinite" "string mapname"
-        "Textures/env.exr"   "color scale" [2.5 2.5 2.5]
+        "Textures/educCentre.png"   "color scale" [2.5 2.5 2.5]
 AttributeEnd
 
 ################# TEXTURES ######################
