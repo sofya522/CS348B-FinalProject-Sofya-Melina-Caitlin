@@ -1,0 +1,141 @@
+Integrator "path" "integer maxdepth" [12]
+Sampler "halton" 
+        "integer pixelsamples" [ 256 ] 
+PixelFilter "box" 
+Film "image" "string filename" ["four_eyes.exr"]
+  "integer xresolution" [1080] "integer yresolution" [1080]
+Scale -1 1 1
+LookAt 0 2.10879993 12.6740004
+        0 2.10879993 12.5740004
+        0 1 0
+Camera "perspective" "float fov" [22]
+    "float focaldistance" 6.674 "float lensradius" .15 # .2 # .4
+
+#############################################
+WorldBegin
+
+#Environment map, pick one to steal - TODO
+AttributeBegin
+Rotate 90 0 0 1
+Rotate -90 1 0 0
+    LightSource "infinite" "string mapname"
+        "Textures/env.exr"   "color scale" [2.5 2.5 2.5]
+AttributeEnd
+
+################# TEXTURES ######################
+Texture "sclera" "color" "imagemap" 
+        "string filename" [ "Textures/Sclera color.png" ] 
+
+Texture "uneven_bump_raw" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/Sclera bump.png" ] 
+
+Texture "uneven_bump_scale" "float" "constant" 
+        "float value" [ 0.00019999999 ] 
+
+Texture "uneven_bump" "float" "scale" 
+        "texture tex1" [ "uneven_bump_raw" ] 
+        "texture tex2" [ "uneven_bump_scale" ] 
+
+Texture "sclera2" "color" "imagemap" 
+        "string filename" [ "Textures/Sclera color.png" ] 
+
+Texture "uneven_bump_raw2" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/Sclera bump.png" ] 
+
+Texture "uneven_bump_scale2" "float" "constant" 
+        "float value" [ 0.00019999999 ] 
+
+Texture "uneven_bump2" "float" "scale" 
+        "texture tex1" [ "uneven_bump_raw2" ] 
+        "texture tex2" [ "uneven_bump_scale2" ] 
+
+Texture "cornmap" "color" "imagemap"
+        "string filename" [ "Textures/Sclera opacity.png" ] 
+
+Texture "iris_bump_raw" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/Iris bump.png" ] 
+
+Texture "iris_bump_scale" "float" "constant"
+    "float value" [ 0.00019999999 ] 
+
+Texture "iris_bump" "float" "scale" 
+        "texture tex1" [ "iris_bump_raw" ] 
+        "texture tex2" [ "iris_bump_scale" ] 
+
+Texture "snake_iris_bump_raw" "float" "imagemap" 
+        "float uscale" [ 1.5 ] 
+        "float vscale" [ 1.5 ] 
+        "string filename" [ "Textures/snakeEye bump.png" ] 
+
+Texture "snake_iris_bump_scale" "float" "constant"
+    "float value" [ 0.00019999999 ] 
+
+Texture "snake_iris_bump" "float" "scale" 
+        "texture tex1" [ "snake_iris_bump_raw" ] 
+        "texture tex2" [ "snake_iris_bump_scale" ] 
+
+#################### TEXTURES END #######################
+
+# This is the eye object.
+#AttributeBegin
+#    #tweak these to move the eye around
+#    Translate -0.5 1.5 6
+#    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+#    Scale 0.5 0.5 0.5
+
+#    Rotate 270 1 0 0 
+
+ #   Include "geometry/humaneye1.pbrt"
+#AttributeEnd
+
+AttributeBegin
+    #tweak these to move the eye around
+    Translate -0.5 1.5 6
+    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.5 0.5 0.5
+
+    Rotate 270 1 0 0 
+
+    Include "geometry/snakeeye.pbrt"
+AttributeEnd
+
+AttributeBegin
+    #tweak these to move the eye around
+    Translate 0.5 1.5 6
+    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.5 0.5 0.5
+
+    Rotate 270 1 0 0 
+
+    Include "geometry/cateye.pbrt"
+AttributeEnd
+
+AttributeBegin
+    #tweak these to move the eye around
+    Translate -0.5 2.5 6
+    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.5 0.5 0.5
+
+    Rotate 270 1 0 0 
+
+    Include "geometry/blackeye.pbrt"
+AttributeEnd
+
+AttributeBegin
+    #tweak these to move the eye around
+    Translate 0.5 2.5 6
+    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
+    Scale 0.5 0.5 0.5
+
+    Rotate 270 1 0 0 
+
+    Include "geometry/whiteeye.pbrt"
+AttributeEnd
+
+WorldEnd
