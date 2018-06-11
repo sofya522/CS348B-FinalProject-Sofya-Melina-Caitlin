@@ -1,6 +1,6 @@
 Integrator "path" "integer maxdepth" [12]
 Sampler "halton" 
-        "integer pixelsamples" [ 4 ] 
+        "integer pixelsamples" [ 64 ] 
 #PixelFilter "box" 
 Film "image" "string filename" ["martini_scene.exr"]
   "integer xresolution" [1080] "integer yresolution" [1080]
@@ -10,26 +10,29 @@ LookAt -.31 3.40879993 12.174
         0 1 0
 
 Camera "perspective" "float fov" [41.5]
-    #"float focaldistance" 3.6 "float lensradius" .15 # .2 # .4
+    "float focaldistance" 3.3 "float lensradius" .02 # .07 # .1
 
 #############################################
 WorldBegin
 
 #Environment map
 AttributeBegin
-Rotate -90 1 0 0
-Rotate -2 1 0 0 
-LightSource "infinite" "string mapname"
-    "Textures/out.exr"   "color scale" [2.5 2.5 2.5]
+	Rotate -90 1 0 0
+	#Rotate -2 1 0 0
+	#angle for the third map
+	Rotate -90 0 0 1
+	Scale .1 .1 .1
+	LightSource "infinite" "string mapname"
+	    "Textures/environmentMap1.png"   "color scale" [.8 .8 .8]
 AttributeEnd
 
 #Area light simulating a setting sun from the right
 AttributeBegin
-  AreaLightSource "area" "color L" [100 100 100]
+  AreaLightSource "area" "color L" [60 70 80]
   # adjust light source position
-  Translate -4 3 8.674004
-  Rotate 110 0 1 0
-  #Rotate 
+  LookAt -.31 3.41 12.174
+        -.295 3.31 12.074
+        0 1 0
   # define the shape of the arealight to be a disk with radius 1.5
   Shape "disk" "float radius" [1.5] 
 AttributeEnd

@@ -2,6 +2,16 @@ Texture "wood"
 	"color" "imagemap" 
 	"string filename" "textures/wood.png"
 
+Texture "table_bump_raw" "float" "imagemap" 
+        "string filename" [ "Textures/wood bump.png" ] 
+
+Texture "table_bump_scale" "float" "constant" 
+        "float value" [ 0.1 ] 
+
+Texture "table_bump" "float" "scale" 
+        "texture tex1" [ "table_bump_raw" ] 
+        "texture tex2" [ "table_bump_scale" ] 
+
 AttributeBegin
 
 	Material "uber"
@@ -9,6 +19,7 @@ AttributeBegin
 		"float uroughness" [0.003]
 		"float vroughness" [0.003]
 		"rgb Ks" [0.2 0.2 0.2]
+		"texture bumpmap" "table_bump"
 	Translate 0 -2.96 9.5
 	Rotate -90 1 0 0 
 	Scale .3 .3 .3 

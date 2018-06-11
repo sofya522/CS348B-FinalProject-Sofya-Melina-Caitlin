@@ -1,7 +1,8 @@
 
 AttributeBegin
 AttributeBegin
-    Material "matte" 
+    Material "plastic" 
+    	"color Kd" [0 0 0]
     Rotate -90 1 0 0 
 
     AttributeBegin
