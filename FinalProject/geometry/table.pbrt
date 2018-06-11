@@ -6,7 +6,7 @@ Texture "table_bump_raw" "float" "imagemap"
         "string filename" [ "Textures/wood bump.png" ] 
 
 Texture "table_bump_scale" "float" "constant" 
-        "float value" [ 0.1 ] 
+        "float value" [ 0.01 ] 
 
 Texture "table_bump" "float" "scale" 
         "texture tex1" [ "table_bump_raw" ] 
