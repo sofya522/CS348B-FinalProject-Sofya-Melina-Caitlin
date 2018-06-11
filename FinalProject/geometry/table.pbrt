@@ -1,14 +1,19 @@
-AttributeBegin
+Texture "wood" 
+	"color" "imagemap" 
+	"string filename" "textures/wood.png"
 
 AttributeBegin
 
-Material "disney"
-Rotate -90 1 0 0 
-Translate 0 -3.0 1
-Scale 0.4 0.4 0.4 
-AttributeBegin
-        Shape "plymesh" "string filename" "geometry/table.ply" 
-    AttributeEnd
+	Material "uber"
+		"texture Kd" "wood"
+		"float uroughness" [0.003]
+		"float vroughness" [0.003]
+		"rgb Ks" [0.2 0.2 0.2]
+	Translate 0 -2.96 9.5
+	Rotate -90 1 0 0 
+	Scale .3 .3 .3 
+	AttributeBegin
+	        Shape "plymesh" "string filename" "geometry/table.ply" 
+	AttributeEnd
 
-AttributeEnd
 AttributeEnd 

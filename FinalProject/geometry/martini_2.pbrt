@@ -1,62 +1,34 @@
 
 AttributeBegin
-AttributeBegin  
-    #tweak these to move the eye around
-    Translate -0.33 2.1 9.95
-    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    Scale 0.11 0.11 0.11
+    Translate 0.0 1.4 10
+    AttributeBegin  
+        #tweak these to move the eye around
+        Translate .2 .6 0
+        Rotate -90 1 0 0 
+        Rotate 30 0 0 1 
+        Scale 0.15 0.15 0.15
+        
+        Include "geometry/humaneye2.pbrt"
+    AttributeEnd
 
-    Rotate 180 1 0 0 
-    Rotate 25 1 0 0 
-    Rotate 10 0 0 1
-    Rotate 30 0 0 1
-    Rotate 45 0 1 0 
-    Rotate 5 1 0 0
-    
-    #Include "geometry/humaneye1.pbrt"
-AttributeEnd
+    AttributeBegin  
+        #tweak these to move the eye around
+        Translate 0 .4 0
+        Rotate -140 1 0 0 
+        Scale 0.165 0.165 0.165
+        
+        Include "geometry/whiteeye.pbrt"
+    AttributeEnd
 
-AttributeBegin  
-    #tweak these to move the eye around
-   Translate -0.17 1.9 9.95
-   # Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    Scale 0.11 0.11 0.11
+    AttributeBegin
+        Material "glass" 
+        Rotate 180 0 0 1
+        Rotate 90 1 0 0 
+        Scale 0.15 0.15 0.15
 
-    Rotate 180 1 0 0 
-    Rotate 25 1 0 0 
-    Rotate 10 0 0 1
-    Rotate 30 0 0 1
-    Rotate 45 0 1 0 
-    Rotate 5 1 0 0
-
-    
-    Include "geometry/cateye.pbrt"
-AttributeEnd
-
-AttributeBegin  
-    #tweak these to move the eye around
-   Translate -0.03 1.8 9.95
-    Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    Scale 0.11 0.11 0.11
-
-    Rotate 180 1 0 0 
-    Rotate 25 1 0 0 
-    Rotate 10 0 0 1
-    Rotate 30 0 0 1
-    Rotate 45 0 1 0 
-    Rotate 5 1 0 0
-
-    
-    Include "geometry/blackeye.pbrt"
-AttributeEnd
-
-AttributeBegin
-    #tweak these to move the eye around
-    Translate -0.0 1.4 10
-    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    #Scale 0.5 0.5 0.5
-
-    Include "geometry/martini_glass.pbrt"
-AttributeEnd
+        AttributeBegin
+            Shape "plymesh" "string filename" "geometry/cup.ply" 
+        AttributeEnd
+    AttributeEnd
 
 AttributeEnd

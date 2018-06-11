@@ -1,17 +1,18 @@
 
 AttributeBegin
-AttributeBegin  
-    Translate 0.005 0 0 
-    Include "geometry/pick_2.pbrt"
-AttributeEnd
+	Translate 0 1.4 10
 
-AttributeBegin
-    #tweak these to move the eye around
-    Translate -0.0 1.4 10
-    #Rotate 77.3424988 0.403387994 -0.75483799 -0.51720202
-    #Scale 0.5 0.5 0.5
+	AttributeBegin 
+		Translate 0 .27 0 
+	    Rotate 30 0 0 1
+		Rotate -10 1 0 0
+		Scale 1.3 1.3 1.3
 
-    Include "geometry/martini_glass.pbrt"
-AttributeEnd
+	    Include "geometry/pick_2.pbrt"
+	AttributeEnd
+
+	AttributeBegin
+	    Include "geometry/martini_glass.pbrt"
+	AttributeEnd
 
 AttributeEnd
